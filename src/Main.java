@@ -5,6 +5,7 @@ import java.awt.event.*;
 class MainWindow extends JFrame{
 
     JPanel todo, doing, done;
+    JTextArea j;
 
     MainWindow() {
         this.setTitle("Todo Lister");
@@ -13,7 +14,8 @@ class MainWindow extends JFrame{
         this.setPreferredSize(new Dimension(650, 600));
 
         makePanels();
-        makeTextFields();
+        makeTextField();
+        makeButtons();
 
         this.pack();
         this.setLocationRelativeTo(null);
@@ -39,8 +41,8 @@ class MainWindow extends JFrame{
         this.add(done);
     }
 
-    private void makeTextFields(){
-        JTextArea j = new JTextArea();
+    private void makeTextField(){
+        j = new JTextArea();
         j.setColumns(14);
         j.setRows(2);
         j.addKeyListener(new KeyListener() {
@@ -69,6 +71,21 @@ class MainWindow extends JFrame{
             }
         });
         todo.add(j);
+    }
+
+    private void makeButtons(){
+        JButton addButton = new JButton("Add");
+
+        addButton.addActionListener(e->{
+            JLabel l = new JLabel();
+            l.setPreferredSize(new Dimension(140, 20));
+            l.setText(j.getText());
+            l.setOpaque(true);
+            l.setBackground(Color.white);
+            todo.add(l, todo.getComponentCount()-2);
+            todo.revalidate();
+        });
+        todo.add(addButton);
     }
 }
 
