@@ -5,7 +5,7 @@ import java.awt.event.*;
 class MainWindow extends JFrame{
 
     JPanel todo, doing, done;
-    JTextArea j;
+    JTextArea todoTextField;
 
     MainWindow() {
         this.setTitle("Todo Lister");
@@ -42,10 +42,10 @@ class MainWindow extends JFrame{
     }
 
     private void makeTextField(){
-        j = new JTextArea();
-        j.setColumns(14);
-        j.setRows(2);
-        j.addKeyListener(new KeyListener() {
+        todoTextField = new JTextArea();
+        todoTextField.setColumns(14);
+        todoTextField.setRows(2);
+        todoTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
 
@@ -54,13 +54,13 @@ class MainWindow extends JFrame{
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_ENTER){
-                    j.setRows(j.getRows() + 1);
+                    todoTextField.setRows(todoTextField.getRows() + 1);
                 } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
                     try {
-                        j.setRows(j.getRows() - 1);
+                        todoTextField.setRows(todoTextField.getRows() - 1);
                     }
                     catch (IllegalArgumentException ignored){
-                        j.setRows(2);
+                        todoTextField.setRows(2);
                     }
                 }
             }
@@ -70,19 +70,28 @@ class MainWindow extends JFrame{
 
             }
         });
-        todo.add(j);
+        todo.add(todoTextField);
     }
 
     private void makeButtons(){
         JButton addButton = new JButton("Add");
 
         addButton.addActionListener(e->{
-            JLabel l = new JLabel();
-            l.setPreferredSize(new Dimension(140, 20));
-            l.setText(j.getText());
-            l.setOpaque(true);
-            l.setBackground(Color.white);
-            todo.add(l, todo.getComponentCount()-2);
+            JPanel todoTaskPanel = new JPanel();
+            todoTaskPanel.setPreferredSize(new Dimension(140, 20));
+
+            JLabel todoTaskLabel = new JLabel();
+            todoTaskLabel.setText(todoTextField.getText());
+
+            todoTaskPanel.add(todoTaskLabel);
+            JCheckBox taskCheckBox = new JCheckBox();
+            taskCheckBox.addActionListener(t->{
+                todo.remove(todoTaskPanel);
+                todo.revalidate();
+            });
+
+            todoTaskPanel.add(taskCheckBox);
+            todo.add(todoTaskPanel, todo.getComponentCount()-2);
             todo.revalidate();
         });
         todo.add(addButton);
