@@ -1,3 +1,5 @@
+import components.DoingBoard;
+import components.DoneBoard;
 import components.TaskPanel;
 import components.TodoBoard;
 
@@ -8,8 +10,9 @@ import java.awt.event.*;
 
 class MainWindow extends JFrame{
 
-    JPanel doing, done;
+    DoneBoard doneBoard;
     TodoBoard todoBoard;
+    DoingBoard doingBoard;
     JTextArea todoTextField;
 
     MainWindow() {
@@ -28,22 +31,14 @@ class MainWindow extends JFrame{
 
     private void makePanels(){
         todoBoard = new TodoBoard();
-        doing = new JPanel();
-        done = new JPanel();
+        doingBoard = new DoingBoard();
+        doneBoard = new DoneBoard();
 
-
-        doing.setBackground(Color.yellow);
-        done.setBackground(Color.green);
-
-        Dimension panelSize = new Dimension(150, 300);
-
-        doing.setPreferredSize(panelSize);
-        done.setPreferredSize(panelSize);
 
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 0));
         this.add(todoBoard);
-        this.add(doing);
-        this.add(done);
+        this.add(doingBoard);
+        this.add(doneBoard);
     }
 
     private void makeTextField(){
@@ -82,7 +77,7 @@ class MainWindow extends JFrame{
         JButton addButton = new JButton("Add");
 
         addButton.addActionListener(e->{
-            TaskPanel todoTaskPanel = new TaskPanel(todoBoard, todoTextField.getText());
+            TaskPanel todoTaskPanel = new TaskPanel(todoBoard, doingBoard, doneBoard, todoTextField.getText());
             todoBoard.add(todoTaskPanel, todoBoard.getComponentCount()-2);
             todoBoard.revalidate();
         });
