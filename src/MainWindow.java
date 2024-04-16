@@ -1,3 +1,6 @@
+import components.TaskPanel;
+import components.TodoBoard;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -5,7 +8,8 @@ import java.awt.event.*;
 
 class MainWindow extends JFrame{
 
-    JPanel todo, doing, done;
+    JPanel doing, done;
+    TodoBoard todoBoard;
     JTextArea todoTextField;
 
     MainWindow() {
@@ -23,21 +27,21 @@ class MainWindow extends JFrame{
     }
 
     private void makePanels(){
-        todo = new JPanel();
+        todoBoard = new TodoBoard();
         doing = new JPanel();
         done = new JPanel();
 
-        todo.setBackground(Color.red);
+
         doing.setBackground(Color.yellow);
         done.setBackground(Color.green);
 
         Dimension panelSize = new Dimension(150, 300);
-        todo.setPreferredSize(panelSize);
+
         doing.setPreferredSize(panelSize);
         done.setPreferredSize(panelSize);
 
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 0));
-        this.add(todo);
+        this.add(todoBoard);
         this.add(doing);
         this.add(done);
     }
@@ -71,30 +75,17 @@ class MainWindow extends JFrame{
 
             }
         });
-        todo.add(todoTextField);
+        todoBoard.add(todoTextField);
     }
 
     private void makeButtons(){
         JButton addButton = new JButton("Add");
 
         addButton.addActionListener(e->{
-            JPanel todoTaskPanel = new JPanel();
-            todoTaskPanel.setPreferredSize(new Dimension(140, 20));
-
-            JLabel todoTaskLabel = new JLabel();
-            todoTaskLabel.setText(todoTextField.getText());
-
-            todoTaskPanel.add(todoTaskLabel);
-            JCheckBox taskCheckBox = new JCheckBox();
-            taskCheckBox.addActionListener(t->{
-                todo.remove(todoTaskPanel);
-                todo.revalidate();
-            });
-
-            todoTaskPanel.add(taskCheckBox);
-            todo.add(todoTaskPanel, todo.getComponentCount()-2);
-            todo.revalidate();
+            TaskPanel todoTaskPanel = new TaskPanel(todoBoard, todoTextField.getText());
+            todoBoard.add(todoTaskPanel, todoBoard.getComponentCount()-2);
+            todoBoard.revalidate();
         });
-        todo.add(addButton);
+        todoBoard.add(addButton);
     }
 }
