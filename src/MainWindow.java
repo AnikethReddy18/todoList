@@ -1,7 +1,4 @@
-import components.DoingBoard;
-import components.DoneBoard;
-import components.TaskPanel;
-import components.TodoBoard;
+import components.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,34 +39,7 @@ class MainWindow extends JFrame{
     }
 
     private void makeTextField(){
-        todoTextField = new JTextArea();
-        todoTextField.setColumns(14);
-        todoTextField.setRows(2);
-        todoTextField.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == KeyEvent.VK_ENTER){
-                    todoTextField.setRows(todoTextField.getRows() + 1);
-                } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-                    try {
-                        todoTextField.setRows(todoTextField.getRows() - 1);
-                    }
-                    catch (IllegalArgumentException ignored){
-                        todoTextField.setRows(2);
-                    }
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
-        });
+        todoTextField = new TaskInputArea();
         todoBoard.add(todoTextField);
     }
 

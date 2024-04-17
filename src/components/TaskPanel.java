@@ -4,11 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TaskPanel extends JPanel {
+
     public TaskPanel(TodoBoard todoBoard, DoingBoard doingBoard, DoneBoard doneBoard,String text){
         JLabel taskLabel = new JLabel();
         JCheckBox taskCheckBox = new JCheckBox();
         taskLabel.setForeground(Color.blue);
         taskLabel.setText(text);
+
         taskCheckBox.addActionListener(e->{
             todoBoard.remove(this);
             todoBoard.revalidate();
