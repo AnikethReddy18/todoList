@@ -21,15 +21,16 @@ class SizeHandler implements ContainerListener{
     public void componentAdded(ContainerEvent e) {
         Board board = (Board)e.getComponent();
         int newHeight = board.getHeight()+50;
+
         System.out.println(newHeight);
-        board.setSize(board.getWidth(),newHeight);
+        if(newHeight<500)board.setSize(board.getWidth(),newHeight);
     }
 
     @Override
     public void componentRemoved(ContainerEvent e) {
         Board board = (Board)e.getComponent();
         int newHeight = board.getHeight()-50;
-        System.out.println(newHeight);
-        board.setSize(board.getWidth(),newHeight);
+
+        if(newHeight>150)board.setSize(board.getWidth(),newHeight);
     }
 }
