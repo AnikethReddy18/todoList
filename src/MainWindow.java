@@ -10,7 +10,6 @@ class MainWindow extends JFrame{
     DoneBoard doneBoard;
     TodoBoard todoBoard;
     DoingBoard doingBoard;
-    JTextArea todoTextField;
 
     MainWindow() {
         this.setTitle("Todo Lister");
@@ -29,9 +28,13 @@ class MainWindow extends JFrame{
         doneBoard = new DoneBoard();
         todoBoard = new TodoBoard(doingBoard, doneBoard);
 
-        this.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 0));
+        this.setLayout(null);
         this.add(todoBoard);
         this.add(doingBoard);
         this.add(doneBoard);
+
+      //  todoBoard.setBounds(50, 50, 150, 500);
+       // doingBoard.setBounds(250, 50, 150, 500);
+       // doneBoard.setBounds(450, 50, 150, 500);
     }
 }

@@ -5,6 +5,6 @@ import java.awt.*;
 
 public class DoingBoard extends Board {
     public DoingBoard(){
-        super(Color.yellow);
+        super(Color.yellow, 250);
     }
 }

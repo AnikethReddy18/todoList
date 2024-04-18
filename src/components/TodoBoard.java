@@ -10,10 +10,11 @@ public class TodoBoard extends Board {
     DoingBoard doingBoard;
     DoneBoard doneBoard;
     public TodoBoard(DoingBoard doingBoard, DoneBoard doneBoard){
-        super(Color.red);
-
+        super(Color.red, 50);
         this.doingBoard = doingBoard;
         this.doneBoard = doneBoard;
+        this.setSize(150, -50);
+
         makeTextField();
         makeButtons();
     }

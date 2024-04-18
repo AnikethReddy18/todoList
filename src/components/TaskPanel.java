@@ -29,6 +29,7 @@ public class TaskPanel extends JPanel {
         JCheckBox taskCheckBox = new JCheckBox();
 
         taskLabel.setText(text);
+        taskLabel.setPreferredSize(new Dimension(100, taskLabel.getPreferredSize().height));
         taskCheckBox.addActionListener(e->{
             doingBoard.remove(this);
             doingBoard.revalidate();
@@ -47,6 +48,7 @@ public class TaskPanel extends JPanel {
         JCheckBox taskCheckBox = new JCheckBox();
 
         taskLabel.setText(text);
+        taskLabel.setPreferredSize(new Dimension(100, taskLabel.getPreferredSize().height));
         taskCheckBox.addActionListener(e->{
             doneBoard.remove(this);
             doneBoard.revalidate();
