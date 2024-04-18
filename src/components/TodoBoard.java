@@ -13,7 +13,7 @@ public class TodoBoard extends Board {
         super(Color.red, 50);
         this.doingBoard = doingBoard;
         this.doneBoard = doneBoard;
-        this.setSize(150, -50);
+      //  this.setSize(150, -50);
 
         makeTextField();
         makeButtons();

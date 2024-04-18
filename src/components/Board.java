@@ -9,28 +9,47 @@ public class Board extends JPanel {
     public Board(Color color, int x){
         this.setBackground(Color.red);
         this.setLocation(x, 50);
-        this.setSize(150, 50);
+       this.setSize(150, 150);
         this.setBackground(color);
         this.addContainerListener(new SizeHandler());
     }
 }
 
 class SizeHandler implements ContainerListener{
+    int maxSize = 500;
 
     @Override
     public void componentAdded(ContainerEvent e) {
         Board board = (Board)e.getComponent();
-        int newHeight = board.getHeight()+50;
 
-        System.out.println(newHeight);
-        if(newHeight<500)board.setSize(board.getWidth(),newHeight);
+       try{
+           int panelHeight = board.getComponent(board.getComponentCount()-3).getPreferredSize().height;
+           int currHeight  = panelHeight + board.getHeight();
+           board.setSize(board.getWidth(), currHeight);
+
+           if(currHeight>maxSize){
+               TaskInputArea taskInputArea = (TaskInputArea)board.getComponent(board.getComponentCount()-2);
+               taskInputArea.setEditable(false);
+           }
+       }
+
+       catch (Exception ignored){}
     }
 
     @Override
     public void componentRemoved(ContainerEvent e) {
         Board board = (Board)e.getComponent();
-        int newHeight = board.getHeight()-50;
+        try{
+            int panelHeight = board.getComponent(board.getComponentCount()-3).getPreferredSize().height;
+            int currHeight  = panelHeight - board.getHeight();
+            if(currHeight>150) board.setSize(board.getWidth(), currHeight);
 
-        if(newHeight>150)board.setSize(board.getWidth(),newHeight);
+            if(currHeight<maxSize){
+                TaskInputArea taskInputArea = (TaskInputArea)board.getComponent(board.getComponentCount()-2);
+                taskInputArea.setEditable(true);
+            }
+        }
+
+        catch (Exception ignored){}
     }
 }
