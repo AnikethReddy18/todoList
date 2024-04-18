@@ -3,9 +3,8 @@ package components;
 import javax.swing.*;
 import java.awt.*;
 
-public class DoingBoard extends JPanel {
+public class DoingBoard extends Board {
     public DoingBoard(){
-        this.setBackground(Color.yellow);
-        this.setPreferredSize(new Dimension(150, 300));
+        super(Color.yellow);
     }
 }
