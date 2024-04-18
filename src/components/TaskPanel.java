@@ -10,6 +10,7 @@ public class TaskPanel extends JPanel {
         JCheckBox taskCheckBox = new JCheckBox();
         taskLabel.setForeground(Color.blue);
         taskLabel.setText(text);
+        taskLabel.setPreferredSize(new Dimension(100, taskLabel.getPreferredSize().height));
 
         taskCheckBox.addActionListener(e->{
             todoBoard.remove(this);

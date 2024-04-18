@@ -31,7 +31,6 @@ class MainWindow extends JFrame{
         doingBoard = new DoingBoard();
         doneBoard = new DoneBoard();
 
-
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 0));
         this.add(todoBoard);
         this.add(doingBoard);
