@@ -7,10 +7,6 @@ import java.awt.*;
 
 class MainWindow extends JFrame{
 
-    DoneBoard doneBoard;
-    TodoBoard todoBoard;
-    DoingBoard doingBoard;
-
     MainWindow() {
         this.setTitle("Todo Lister");
         this.setVisible(true);
@@ -24,9 +20,9 @@ class MainWindow extends JFrame{
     }
 
     private void makePanels(){
-        doingBoard = new DoingBoard();
-        doneBoard = new DoneBoard();
-        todoBoard = new TodoBoard(doingBoard, doneBoard);
+        DoingBoard doingBoard = new DoingBoard();
+        DoneBoard doneBoard = new DoneBoard();
+        TodoBoard todoBoard = new TodoBoard(doingBoard, doneBoard);
 
         this.setLayout(null);
         this.add(todoBoard);

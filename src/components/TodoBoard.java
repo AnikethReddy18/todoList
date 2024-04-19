@@ -16,6 +16,7 @@ public class TodoBoard extends Board {
         this.doingBoard = doingBoard;
         this.doneBoard = doneBoard;
 
+        makeTitle();
         makeTextField();
         makeButtons();
     }
@@ -56,6 +57,10 @@ public class TodoBoard extends Board {
     private void changeSize(int change){
         int newHeight = this.getHeight() + change;
         this.setSize(this.getWidth(), newHeight);
+    }
+    private void makeTitle(){
+        JLabel titleLabel = new JLabel("TODO:");
+        this.add(titleLabel);
     }
 }
 

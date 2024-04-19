@@ -6,6 +6,7 @@ import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 
 public class Board extends JPanel {
+    int minHeight = 150;
     public Board(Color color, int x) {
         this.setBackground(Color.red);
         this.setLocation(x, 50);
@@ -15,7 +16,7 @@ public class Board extends JPanel {
     }
 
     void resizeComponentRemoved(Component component) {
-        this.setSize(this.getWidth(), this.getHeight() - component.getHeight());
+        if(this.getHeight()>minHeight)this.setSize(this.getWidth(), this.getHeight() - component.getHeight());
     }
 }
 class SizeHandler implements ContainerListener{
