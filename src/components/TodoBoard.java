@@ -28,7 +28,7 @@ public class TodoBoard extends Board {
             public void keyTyped(KeyEvent e) {
                 int newTodoTextFieldHeight = todoTextField.getHeight();
                 if(todoTextFieldHeight != newTodoTextFieldHeight){
-                    changeSize(newTodoTextFieldHeight -todoTextFieldHeight);
+                    changeSize(newTodoTextFieldHeight - todoTextFieldHeight);
                 }
                 todoTextFieldHeight = newTodoTextFieldHeight;
             }

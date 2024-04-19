@@ -13,6 +13,7 @@ public class TaskPanel extends JPanel {
         taskLabel.setPreferredSize(new Dimension(100, taskLabel.getPreferredSize().height));
 
         taskCheckBox.addActionListener(e->{
+            todoBoard.resizeComponentRemoved(this);
             todoBoard.remove(this);
             todoBoard.revalidate();
             todoBoard.repaint();
@@ -31,6 +32,7 @@ public class TaskPanel extends JPanel {
         taskLabel.setText(text);
         taskLabel.setPreferredSize(new Dimension(100, taskLabel.getPreferredSize().height));
         taskCheckBox.addActionListener(e->{
+            doingBoard.resizeComponentRemoved(this);
             doingBoard.remove(this);
             doingBoard.revalidate();
             doingBoard.repaint();
@@ -50,6 +52,7 @@ public class TaskPanel extends JPanel {
         taskLabel.setText(text);
         taskLabel.setPreferredSize(new Dimension(100, taskLabel.getPreferredSize().height));
         taskCheckBox.addActionListener(e->{
+            doneBoard.resizeComponentRemoved(this);
             doneBoard.remove(this);
             doneBoard.revalidate();
             doneBoard.repaint();

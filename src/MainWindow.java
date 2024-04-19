@@ -2,7 +2,7 @@ import components.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+
 
 
 class MainWindow extends JFrame{
@@ -32,9 +32,5 @@ class MainWindow extends JFrame{
         this.add(todoBoard);
         this.add(doingBoard);
         this.add(doneBoard);
-
-      //  todoBoard.setBounds(50, 50, 150, 500);
-       // doingBoard.setBounds(250, 50, 150, 500);
-       // doneBoard.setBounds(450, 50, 150, 500);
     }
 }
