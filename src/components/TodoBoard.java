@@ -1,8 +1,12 @@
 package components;
 
 
+import org.w3c.dom.ls.LSOutput;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 
 public class TodoBoard extends Board {
@@ -13,7 +17,6 @@ public class TodoBoard extends Board {
         super(Color.red, 50);
         this.doingBoard = doingBoard;
         this.doneBoard = doneBoard;
-      //  this.setSize(150, -50);
 
         makeTextField();
         makeButtons();
@@ -21,6 +24,17 @@ public class TodoBoard extends Board {
 
     private void makeTextField(){
         todoTextField = new TaskInputArea();
+        todoTextField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                int todoTextFieldHeight = todoTextField.getHeight();
+                increaseSize(todoTextFieldHeight);
+            }
+            @Override
+            public void keyPressed(KeyEvent e) {}
+            @Override
+            public void keyReleased(KeyEvent e) {}
+        });
         this.add(todoTextField);
     }
 
@@ -33,6 +47,11 @@ public class TodoBoard extends Board {
             this.revalidate();
         });
         this.add(addButton);
+    }
+
+    private void increaseSize(int increment){
+        int newHeight = this.getHeight() + increment;
+        this.setSize(this.getWidth(), newHeight);
     }
 }
 
