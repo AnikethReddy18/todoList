@@ -45,6 +45,8 @@ public class TodoBoard extends Board {
 
         addButton.addActionListener(e->{
             TaskPanel todoTaskPanel = new TaskPanel(this, doingBoard, doneBoard, todoTextField.getText());
+            todoTextField.setText("");
+            todoTextField.requestFocusInWindow();
             this.add(todoTaskPanel, this.getComponentCount()-2);
             this.revalidate();
         });

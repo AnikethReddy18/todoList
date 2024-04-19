@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
+import java.util.Arrays;
 
 public class Board extends JPanel {
     public Board(Color color, int x){
@@ -39,17 +40,18 @@ class SizeHandler implements ContainerListener{
     @Override
     public void componentRemoved(ContainerEvent e) {
         Board board = (Board)e.getComponent();
+
         try{
             int panelHeight = board.getComponent(board.getComponentCount()-3).getPreferredSize().height;
-            int currHeight  = panelHeight - board.getHeight();
+            int currHeight  = board.getHeight() - panelHeight;
+            System.out.println(currHeight);
             if(currHeight>150) board.setSize(board.getWidth(), currHeight);
 
             if(currHeight<maxSize){
-                TaskInputArea taskInputArea = (TaskInputArea)board.getComponent(board.getComponentCount()-2);
+                TaskInputArea taskInputArea = (TaskInputArea)board.getComponent(board.getComponentCount()-3);
                 taskInputArea.setEditable(true);
             }
         }
-
         catch (Exception ignored){}
     }
 }
