@@ -1,2 +1,0 @@
-Todod Board dynamic size cbug fix
-(after removing the component you cant access the removed components height, )
