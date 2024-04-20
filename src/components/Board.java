@@ -24,10 +24,8 @@ class SizeHandler implements ContainerListener{
 
     @Override
     public void componentAdded(ContainerEvent e) {
-        Board board = (Board)e.getComponent();
-
-       try{
-           int panelHeight = board.getComponent(board.getComponentCount()-3).getPreferredSize().height;
+        if(e.getComponent() instanceof Board board){
+            int panelHeight = board.getComponent(board.getComponentCount()-3).getPreferredSize().height;
            int currHeight  = panelHeight + board.getHeight();
            board.setSize(board.getWidth(), currHeight);
 
@@ -36,8 +34,6 @@ class SizeHandler implements ContainerListener{
                taskInputArea.setEditable(false);
            }
        }
-
-       catch (Exception ignored){}
     }
 
     @Override
